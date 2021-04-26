@@ -1,0 +1,1 @@
+export { DesktopRedirectView } from './DesktopRedirectView';

@@ -1,17 +1,36 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import { Crypto } from './Crypto';
+import { createGlobalStyle } from 'styled-components';
+
+const GlobalStyle = createGlobalStyle`
+
+   *, *::before, *::after{
+      box-sizing: border-box;
+      position: relative;
+      margin: 0;
+      padding: 0;
+   }
+
+   a{ text-decoration: none; }
+   
+   body, html, #root{
+      overflow: hidden;
+      min-height: 100%;
+      height: 100%;
+      width: 100%;
+   }
+   
+   html{ font-size: 10px; }
+   
+   ul, ol{ list-style-type: none; }
+
+`;
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
+   <React.StrictMode>
+      <GlobalStyle />
+      <Crypto />
+   </React.StrictMode>,
+   document.getElementById('root')
 );
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
