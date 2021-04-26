@@ -37,9 +37,7 @@ const RedirectPanel = styled.main`
          font-size: 3.6rem;
          text-transform: uppercase;
 
-         span{
-            color: #FCFCFC;
-         }
+         span{ color: #FCFCFC; }
       
       }
 
@@ -51,7 +49,7 @@ const RedirectPanel = styled.main`
    }
 
    img{
-      margin-left: -150px;
+      margin-left: -25%;
       max-width: 70%;
    }
 
@@ -70,7 +68,5 @@ const RedirectPanel = styled.main`
       img{ max-width: 100%; }
 
    }
-
-   @media screen and (max-width: 600px){ padding: 5%; }
 
 `;
