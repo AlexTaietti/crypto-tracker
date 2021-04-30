@@ -1,11 +1,14 @@
 import styled from 'styled-components';
+import { BrowserRouter as Router } from 'react-router-dom';
 
 export const Tracker: React.FC = () => {
 
    return (
-      <TrackerWrapper>
-         <h1>sprintt<span>crypto</span></h1>
-      </TrackerWrapper>
+      <Router>
+         <TrackerWrapper>
+            <h1>sprintt<span>crypto</span></h1>
+         </TrackerWrapper>
+      </Router>
    );
 
 };
