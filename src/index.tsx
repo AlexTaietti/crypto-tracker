@@ -12,7 +12,10 @@ const GlobalStyle = createGlobalStyle`
       padding: 0;
    }
 
-   a{ text-decoration: none; }
+   a{
+      color: inherit;
+      text-decoration: none;
+   }
    
    body, html, #root{
       overflow: hidden;
