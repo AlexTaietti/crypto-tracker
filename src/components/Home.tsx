@@ -1,20 +1,24 @@
 import styled from 'styled-components';
 import { Header } from './Header';
+import { useRouteMatch } from 'react-router-dom';
+import { CoinsList } from './CoinsList';
 
 export const Home: React.FC = () => {
+
+   const tracked = useRouteMatch({ path: "/tracked-coins" }) ? true : false;
 
    return (
       <HomeWrapper>
          <Header />
+         <CoinsList tracked={tracked} />
       </HomeWrapper>
    );
 
 };
 
 const HomeWrapper = styled.main`
-
+   position: relative;
+   display: block;
    height: 100%;
    width: 100%;
-   background: #1D1C28;
-
 `;

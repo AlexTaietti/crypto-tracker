@@ -16,10 +16,9 @@ const GlobalStyle = createGlobalStyle`
       color: inherit;
       text-decoration: none;
    }
-   
-   body, html, #root{
-      overflow: hidden;
-      min-height: 100%;
+
+   html, body, #root{
+      display: block;
       height: 100%;
       width: 100%;
    }

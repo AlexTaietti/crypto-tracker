@@ -7,7 +7,7 @@ export const Tracker: React.FC = () => {
    return (
       <Router>
          <TrackerWrapper>
-            <Route path="/" component={Home} />
+            <Route path={['/', '/tracked-coins']} component={Home} />
          </TrackerWrapper>
       </Router>
    );
@@ -17,9 +17,8 @@ export const Tracker: React.FC = () => {
 
 const TrackerWrapper = styled.div`
 
-   overflow: hidden;
    min-height: 100%;
-   height: 100%;
    width: 100%;
+   background: #1D1C28;
 
 `;
