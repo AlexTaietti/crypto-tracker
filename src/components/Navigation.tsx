@@ -5,8 +5,8 @@ export const Navigation: React.FC = () => {
 
    return (
       <NavigationContainer>
-         <NavLink to='/'>All Currencies</NavLink>
-         <NavLink to='/traked-coins'>Tracked Currencies</NavLink>
+         <NavLink exact to='/'>All Currencies</NavLink>
+         <NavLink to='/tracked-coins'>Tracked Currencies</NavLink>
       </NavigationContainer>
    )
 

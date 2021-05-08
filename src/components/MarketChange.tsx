@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import { parseChange } from '../helpers/utils';
+import { getChange } from '../helpers/utils';
 import positiveArrow from '../assets/images/green_arrow.png';
 import negativeArrow from '../assets/images/red_arrow.png';
 
@@ -10,7 +10,7 @@ export const MarketChange: React.FC<{ change: string }> = ({ change }) => {
 
    useEffect(() => {
 
-      const direction = parseChange(change);
+      const direction = getChange(change);
 
       setMarketDirection(direction);
 

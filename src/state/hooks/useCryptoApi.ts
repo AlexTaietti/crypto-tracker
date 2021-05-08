@@ -11,6 +11,8 @@ export const useCryptoApi = <ResourceType>(apiEndpoint: string) => {
 
          const data: ResourceType = await axiosInstance.get(endpoint).then(response => response.data);
 
+         console.log(data);
+
          setData(data);
 
       };

@@ -7,10 +7,12 @@ export const axiosInstance = axios.create({
    headers: { 'user-access-token': process.env.REACT_APP_CRYPTO_TOKEN }
 });
 
-export const parseChange = (change: string) => {
+export const getChange = (change: string) => {
 
    const direction = change.split('')[0] === '+' ? 1 : -1;
 
    return direction;
 
 };
+
+export const formatPrice = (price: number) => price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
