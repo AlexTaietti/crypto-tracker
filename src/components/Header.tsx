@@ -1,8 +1,8 @@
 import styled from 'styled-components';
+import { MarketStatus } from '../@types';
+import { useCryptoApi } from '../state/hooks';
 import { Logo } from './Logo'
 import { MarketChange } from './MarketChange';
-import { useCryptoApi } from '../state/hooks';
-import { MarketStatus } from '../@types';
 import { Navigation } from './Navigation';
 
 export const Header: React.FC = () => {

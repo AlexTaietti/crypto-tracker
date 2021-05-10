@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import { Header } from './Header';
 import { useRouteMatch } from 'react-router-dom';
+import { Header } from './Header';
 import { CoinsList } from './CoinsList';
 
 export const Home: React.FC = () => {

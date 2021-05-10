@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { Coin } from '../@types';
-import { CoinSummary } from './CoinSummary';
 import { useCryptoApi } from '../state/hooks';
+import { CoinSummary } from './CoinSummary';
 
 export const CoinsList: React.FC<{ tracked?: boolean }> = ({ tracked }) => {
 

@@ -9,3 +9,7 @@ export type Coin = {
    "symbol": string;
    "volume_24h_mil": number;
 };
+
+export interface CoinDetailsLocation {
+   coin: Coin;
+}
