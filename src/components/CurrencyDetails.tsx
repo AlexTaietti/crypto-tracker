@@ -9,7 +9,7 @@ export const CurrencyDetails: React.FC = () => {
 
    const { state: { coin: coinData } } = useLocation<CoinDetailsLocation>();
 
-   const [tracked, setTracked] = useState(false);
+   const [tracked, setTracked] = useState(coinData.tracked as boolean);
 
    const toggleTrackedState = () => {
 

@@ -29,6 +29,14 @@ export const formatPrice = (price: number) => {
 
 };
 
+export const fetchResource = async (endpoint: string) => {
+
+   const data = await axiosInstance.get(endpoint).then(response => response.data);
+
+   return data;
+
+};
+
 export const handleTrackedAPI = (coinID: number, newTrackedFlag: boolean) => {
 
    axiosInstance.post(`/coins/tracked_coins/${coinID}?status=${newTrackedFlag}`);
