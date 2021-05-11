@@ -7,10 +7,6 @@ export const Crypto: React.FC = () => {
 
    const [mobile] = useState(window.innerWidth < MOBILE_THRESHOLD);
 
-   return (
-
-      mobile ? <Tracker /> : <DesktopRedirectView />
-
-   );
+   return mobile ? <Tracker /> : <DesktopRedirectView />;
 
 };
