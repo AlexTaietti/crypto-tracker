@@ -25,7 +25,7 @@ export const formatPrice = (price: number) => {
 
    const decimalPart = splitPrice[1] ? ('.' + splitPrice[1]) : '';
 
-   return formattedInteger + decimalPart;
+   return '$' + formattedInteger + decimalPart;
 
 };
 

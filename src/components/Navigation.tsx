@@ -8,7 +8,7 @@ export const Navigation: React.FC = () => {
          <NavLink exact to='/'>All Currencies</NavLink>
          <NavLink to='/tracked-coins'>Tracked Currencies</NavLink>
       </NavigationContainer>
-   )
+   );
 
 };
 

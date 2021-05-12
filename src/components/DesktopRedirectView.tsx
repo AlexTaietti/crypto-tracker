@@ -20,7 +20,7 @@ const RedirectPanel = styled.main`
    font-family: 'Varela Round', sans-serif;
    position: relative;
    display: flex;
-   height: 100%;
+   height: 100vh;
    width: 100%;
    padding: 0 0 0 12%;
    background: #1D1C28;

@@ -24,4 +24,5 @@ const Coins = styled.ul`
    width: 100%;
    display: block;
    padding: 15px 25px;
+   background: #1D1C28;
 `;

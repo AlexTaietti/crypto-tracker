@@ -60,6 +60,16 @@ const Header = styled.header`
       }
    }
 
+   @media screen and (max-height: 650px){
+
+      padding-top: 40px;
+
+      a{ top: 40px; }
+      
+      .performance{ margin-top: 20px; }
+   
+   }
+
 `;
 
 const CoinName = styled.p`
@@ -74,6 +84,10 @@ const CoinName = styled.p`
       margin-left: 12px;
       color: #8987A0;
       font-size: 1.8rem;
+   }
+
+   @media screen and (max-height: 650px){
+      margin-top: 20px;
    }
 
 `;

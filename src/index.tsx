@@ -16,12 +16,6 @@ const GlobalStyle = createGlobalStyle`
       color: inherit;
       text-decoration: none;
    }
-
-   html, body, #root{
-      display: block;
-      height: 100%;
-      width: 100%;
-   }
    
    html{ font-size: 10px; }
    

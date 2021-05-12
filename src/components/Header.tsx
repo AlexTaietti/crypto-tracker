@@ -27,4 +27,9 @@ const HeaderContainer = styled.header`
    position: relative;
    background: #2A283D;
 
+   @media screen and (max-height: 650px){
+      padding-top: 40px;
+      height: 200px;
+   }
+
 `;
