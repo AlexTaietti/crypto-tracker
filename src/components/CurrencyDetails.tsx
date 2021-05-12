@@ -10,14 +10,18 @@ import { LineGraph } from './LineGraph';
 export const CurrencyDetails: React.FC = () => {
 
    const { state: { coin: coinData } } = useLocation<CoinDetailsLocation>();
+
+   const [coin, setCoin] = useState(coinData);
    const [timeframe, setTimeframe] = useState<string>('D');
    const [coinHistory, setCoinHistory] = useState<{ date_time: string; price: number }[]>();
 
    const toggleTrackedState = () => {
 
-      const newTrackedFlag = !coinData.tracked;
+      const newTrackedFlag = !coin.tracked;
 
-      handleTrackedAPI(coinData.coin_id, newTrackedFlag);
+      setCoin({ ...coin, tracked: newTrackedFlag });
+
+      handleTrackedAPI(coin.coin_id, newTrackedFlag);
 
    };
 
@@ -58,7 +62,7 @@ export const CurrencyDetails: React.FC = () => {
 
          }
 
-         <TrackButton tracked={coinData.tracked as boolean} handleClick={toggleTrackedState} />
+         <TrackButton tracked={coin.tracked as boolean} handleClick={toggleTrackedState} />
       </DetailsWrapper>
    );
 
