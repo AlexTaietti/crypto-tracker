@@ -18,7 +18,7 @@ export const Tracker: React.FC = () => {
 
 
 const TrackerWrapper = styled.div`
-   min-height: 100%;
+   height: 100vh;
    width: 100%;
    background: #1D1C28;
 `;

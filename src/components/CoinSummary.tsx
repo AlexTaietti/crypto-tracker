@@ -25,7 +25,7 @@ export const CoinSummary: React.FC<{ coin: Coin }> = ({ coin }) => {
 
 };
 
-const Summary = styled.div`
+const Summary = styled.li`
 
    a{
       display: flex;

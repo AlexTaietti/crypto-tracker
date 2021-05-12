@@ -1,31 +1,102 @@
-import { useState } from 'react';
+import styled from 'styled-components';
+import { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
-import { handleTrackedAPI } from '../helpers/utils';
 import { CoinDetailsLocation } from '../@types';
+import { handleTrackedAPI, fetchResource } from '../helpers/utils';
 import { DetailsHeader } from './DetailsHeader';
 import { TrackButton } from './TrackButton';
+import { LineGraph } from './LineGraph';
 
 export const CurrencyDetails: React.FC = () => {
 
    const { state: { coin: coinData } } = useLocation<CoinDetailsLocation>();
-
-   const [tracked, setTracked] = useState(coinData.tracked as boolean);
+   const [timeframe, setTimeframe] = useState<string>('D');
+   const [coinHistory, setCoinHistory] = useState<{ date_time: string; price: number }[]>();
 
    const toggleTrackedState = () => {
 
-      const newTrackedFlag = !tracked;
+      const newTrackedFlag = !coinData.tracked;
 
       handleTrackedAPI(coinData.coin_id, newTrackedFlag);
 
-      setTracked(newTrackedFlag);
-
    };
 
+   const updateTimeframe = (e: React.FormEvent<HTMLInputElement>) => setTimeframe(e.currentTarget.value);
+
+   useEffect(() => {
+
+      (async () => {
+
+         const data = await fetchResource(`/coins/history/${coinData.coin_id}?time_scope=1${timeframe}&time_zone=1`);
+
+         setCoinHistory(data.quotes_data);
+
+      })();
+
+   }, [timeframe, coinData]);
+
    return (
-      <>
+      <DetailsWrapper>
          <DetailsHeader coinData={coinData} />
-         <TrackButton tracked={tracked} handleClick={toggleTrackedState} />
-      </>
+
+         {
+
+            coinHistory ?
+
+               <>
+                  <TimeframeInput>
+                     <input onChange={updateTimeframe} id='day' name='timeframe' type='radio' value='D' defaultChecked /><label htmlFor='day'>1 day</label>
+                     <input onChange={updateTimeframe} id='month' name='timeframe' type='radio' value='M' /><label htmlFor='month'>1 month</label>
+                     <input onChange={updateTimeframe} id='year' name='timeframe' type='radio' value='Y' /><label htmlFor='year'>1 year</label>
+                  </TimeframeInput>
+                  <LineGraph data={coinHistory} timeframe={timeframe} />
+               </>
+
+               :
+
+               null
+
+         }
+
+         <TrackButton tracked={coinData.tracked as boolean} handleClick={toggleTrackedState} />
+      </DetailsWrapper>
    );
 
 };
+
+const DetailsWrapper = styled.div`
+   display: flex;
+   flex-direction: column;
+   justify-content: space-between;
+   width: 100%;
+   height: 100%;
+
+   svg { font-family: 'Roboto', sans-serif; }
+
+`;
+
+const TimeframeInput = styled.div`
+
+   display: flex;
+   justify-content: space-evenly;
+   width: 100%;
+
+   input[type='radio']{
+
+      display: none;
+
+      &:checked + label{border-color: #D6D5DA; }
+
+   }
+
+   label{
+      background: #2B2F39;
+      padding: 9px 28px;
+      border-radius: 40px;
+      color: #D6D5DA;
+      border: 1px solid #2B2F39;
+      font-family: 'Roboto', sans-serif;
+      font-size: 1.6rem;
+   }
+
+`;

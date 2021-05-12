@@ -10,7 +10,7 @@ export const PerformanceIndicator: React.FC<{ price: number; change: string }> =
 
    return (
       <div className='performance'>
-         <span className='price'>${formattedPrice}</span>
+         <span className='price'>{formattedPrice}</span>
          <div className='change' style={{ color: direction > 0 ? '#59BB6E' : '#DB4848' }}><img alt='change arrow' src={direction > 0 ? positiveArrow : negativeArrow} /><span>{change}</span></div>
       </div>
    );
