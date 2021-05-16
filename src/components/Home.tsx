@@ -10,10 +10,10 @@ export const Home: React.FC = () => {
 
    const tracked = useRouteMatch({ path: "/tracked-coins" }) ? true : false;
 
-   const allCoins = useCryptoApi<{ coins_list: Coin[] }>(`/coins/list?tracked_only=false&limit=20&offset=0`);
-   const trackedCoins = useCryptoApi<{ coins_list: Coin[] }>(`/coins/list?tracked_only=true&limit=20&offset=0`);
+   const allCoins = useCryptoApi<{ coins_list: Partial<Coin>[] }>(`/coins/list?tracked_only=false&limit=20&offset=0`);
+   const trackedCoins = useCryptoApi<{ coins_list: Partial<Coin>[] }>(`/coins/list?tracked_only=true&limit=20&offset=0`);
 
-   const [displayedCoins, setDisplayedCoins] = useState<Coin[]>();
+   const [displayedCoins, setDisplayedCoins] = useState<Required<Coin>[]>();
 
    useEffect(() => {
 
@@ -23,17 +23,17 @@ export const Home: React.FC = () => {
 
          if (tracked) {
 
-            coins = trackedCoins.coins_list.map((coin: Coin) => {
+            coins = trackedCoins.coins_list.map((coin: Partial<Coin>) => {
 
                coin.tracked = true;
 
-               return coin;
+               return coin as Required<Coin>;
 
             });
 
          } else {
 
-            coins = allCoins.coins_list.map((coin: Coin) => {
+            coins = allCoins.coins_list.map((coin: Partial<Coin>) => {
 
                for (let i = 0; i < trackedCoins.coins_list.length; i++) {
 
@@ -41,7 +41,7 @@ export const Home: React.FC = () => {
 
                }
 
-               return coin;
+               return coin as Required<Coin>;
 
             });
 

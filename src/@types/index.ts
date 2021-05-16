@@ -8,7 +8,7 @@ export type Coin = {
    price: number;
    symbol: string;
    volume_24h_mil: number;
-   tracked?: boolean;
+   tracked: boolean;
 };
 
 export interface CoinDetailsLocation { coin: Coin; };
