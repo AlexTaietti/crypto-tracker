@@ -37,8 +37,10 @@ export const fetchResource = async (endpoint: string) => {
 
 };
 
-export const handleTrackedAPI = (coinID: number, newTrackedFlag: boolean) => {
+export const handleTrackedAPI = (coinID: number, newTrackedFlag: boolean, onSuccess: () => void) => {
 
-   axiosInstance.post(`/coins/tracked_coins/${coinID}?status=${newTrackedFlag}`);
+   axiosInstance.post(`/currencies/tracked_currencies/${coinID}?status=${newTrackedFlag}`)
+      .then(() => onSuccess())
+      .catch(error => console.error(error));
 
 };
