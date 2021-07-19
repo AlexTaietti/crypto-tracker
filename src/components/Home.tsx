@@ -1,62 +1,18 @@
 import styled from 'styled-components';
-import { useRouteMatch } from 'react-router-dom';
 import { Header } from './Header';
-import { CoinsList } from './CoinsList';
-import { Coin } from '../@types';
-import { useCryptoApi } from '../state/hooks';
-import { useEffect, useState } from 'react';
+import { Route, Switch } from 'react-router-dom';
+import { TrackedContainer } from '../containers/TrackedContainer';
+import { CurrenciesContainer } from '../containers/CurrenciesContainer';
 
 export const Home: React.FC = () => {
-
-   const tracked = useRouteMatch({ path: "/tracked-coins" }) ? true : false;
-
-   const allCoins = useCryptoApi<{ coins_list: Partial<Coin>[] }>(`/coins/list?tracked_only=false&limit=20&offset=0`);
-   const trackedCoins = useCryptoApi<{ coins_list: Partial<Coin>[] }>(`/coins/list?tracked_only=true&limit=20&offset=0`);
-
-   const [displayedCoins, setDisplayedCoins] = useState<Required<Coin>[]>();
-
-   useEffect(() => {
-
-      let coins: Coin[] = [];
-
-      if (allCoins?.coins_list && trackedCoins?.coins_list) {
-
-         if (tracked) {
-
-            coins = trackedCoins.coins_list.map((coin: Partial<Coin>) => {
-
-               coin.tracked = true;
-
-               return coin as Required<Coin>;
-
-            });
-
-         } else {
-
-            coins = allCoins.coins_list.map((coin: Partial<Coin>) => {
-
-               for (let i = 0; i < trackedCoins.coins_list.length; i++) {
-
-                  if (trackedCoins.coins_list[i].coin_id === coin.coin_id) { coin.tracked = true; }
-
-               }
-
-               return coin as Required<Coin>;
-
-            });
-
-         }
-
-      }
-
-      setDisplayedCoins(coins);
-
-   }, [allCoins, trackedCoins, tracked]);
 
    return (
       <HomeWrapper>
          <Header />
-         <CoinsList coins={displayedCoins} />
+         <Switch>
+            <Route path="/tracked-coins" component={TrackedContainer} />
+            <Route path="/" component={CurrenciesContainer} />
+         </Switch>
       </HomeWrapper>
    );
 
