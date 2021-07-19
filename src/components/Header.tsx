@@ -1,18 +1,18 @@
 import styled from 'styled-components';
 import { MarketStatus } from '../@types';
-import { useCryptoApi } from '../state/hooks';
+import { useCryptoApi } from '../hooks';
 import { Logo } from './Logo'
 import { MarketChange } from './MarketChange';
 import { Navigation } from './Navigation';
 
 export const Header: React.FC = () => {
 
-   const marketChange = useCryptoApi<MarketStatus>('coins/market_change?n_coins=90');
+   const marketChange = useCryptoApi<MarketStatus>('currencies/market_change');
 
    return (
       <HeaderContainer>
          <Logo />
-         { marketChange && <MarketChange change={marketChange.market_change_24hr} />}
+         {marketChange && <MarketChange change={marketChange.market_change_24hr} />}
          <Navigation />
       </HeaderContainer>
    );

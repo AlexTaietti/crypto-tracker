@@ -1,10 +1,24 @@
+import { useState } from 'react';
 import styled from 'styled-components';
+import { Coin } from '../@types';
+import { handleTrackedAPI } from '../helpers/utils';
 
-export const TrackButton: React.FC<{ tracked: boolean; handleClick: () => void }> = ({ tracked, handleClick }) => {
+export const TrackButton: React.FC<{ coin: Coin }> = ({ coin }) => {
+
+   const [localTrackedFlag, setLocalTrackedFlag] = useState(coin.is_tracked);
+
+   const handleClick = () => {
+
+      const newTrackedStatus = !localTrackedFlag;
+      const updateSuccessCallback = () => setLocalTrackedFlag(newTrackedStatus);
+
+      handleTrackedAPI(coin.currency_id, newTrackedStatus, updateSuccessCallback);
+
+   };
 
    return (
-      <Button onClick={handleClick} className={tracked ? 'tracked' : 'default'}>
-         {!tracked ? 'Add to tracked currencies list' : 'Remove from tracked currencies list'}
+      <Button onClick={handleClick} className={localTrackedFlag ? 'tracked' : 'default'}>
+         {!localTrackedFlag ? 'Add to tracked currencies list' : 'Remove from tracked currencies list'}
       </Button>
    );
 

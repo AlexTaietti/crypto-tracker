@@ -2,8 +2,9 @@ import { useEffect, useState } from 'react';
 import { timeParse, timeFormat } from 'd3';
 import { LineChart, XAxis, YAxis, Line, ResponsiveContainer, CartesianGrid } from 'recharts'
 import { formatPrice } from '../helpers/utils';
+import { CoinHistory } from '../@types';
 
-export const LineGraph: React.FC<{ timeframe: string; data: { date_time: string; price: number }[] }> = ({ timeframe, data }) => {
+export const LineGraph: React.FC<{ timeframe: string; data: CoinHistory }> = ({ timeframe, data }) => {
 
    const [timeFormatString, setTimeFormatString] = useState<string>("%I %p");
 
